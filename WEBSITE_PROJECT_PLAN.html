@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Makai US Group — Website Project Plan</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', sans-serif; background: #060b14; color: #e2e8f0; min-height: 100vh; }
+  .header { background: linear-gradient(135deg, #0a1628, #0d1f3c); border-bottom: 1px solid #1e3a5f; padding: 32px 48px; }
+  .header-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .brand { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #4f6aad; margin-bottom: 8px; }
+  .title { font-size: 28px; font-weight: 700; color: #e8ecff; }
+  .subtitle { font-size: 13px; color: #4f6aad; margin-top: 4px; }
+  .version { font-size: 11px; background: #1c2e50; color: #818cf8; border: 1px solid #2a3f6e; border-radius: 20px; padding: 4px 12px; }
+  .progress-bar-wrap { margin-top: 24px; }
+  .progress-label { font-size: 11px; color: #4f6aad; margin-bottom: 6px; display: flex; justify-content: space-between; }
+  .progress-track { height: 4px; background: #1e2d4a; border-radius: 2px; }
+  .progress-fill { height: 4px; background: linear-gradient(90deg, #3b82f6, #818cf8); border-radius: 2px; width: 8%; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 40px 48px; }
+
+  .section { margin-bottom: 48px; }
+  .section-title { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #4f6aad; border-left: 3px solid #3b82f6; padding-left: 12px; margin-bottom: 20px; }
+
+  /* Status badges */
+  .badge { font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; border: 1px solid; white-space: nowrap; }
+  .badge-done     { background: #071510; color: #4ade80; border-color: #1a4a30; }
+  .badge-progress { background: #0a1220; color: #60a5fa; border-color: #1a3a6e; }
+  .badge-pending  { background: #141008; color: #fbbf24; border-color: #3d2c0a; }
+  .badge-blocked  { background: #140808; color: #f87171; border-color: #3d1010; }
+  .badge-idea     { background: #12081a; color: #c084fc; border-color: #3d1060; }
+
+  /* Page cards */
+  .pages-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .page-card { background: #0a0f1a; border: 1px solid #1e2d4a; border-radius: 12px; padding: 20px; }
+  .page-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+  .page-num { font-size: 10px; color: #3b82f6; font-weight: 700; letter-spacing: 0.1em; }
+  .page-name { font-size: 15px; font-weight: 700; color: #e8ecff; margin-top: 2px; }
+  .page-desc { font-size: 12px; color: #4f6aad; margin-bottom: 12px; line-height: 1.6; }
+  .page-items { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .page-items li { font-size: 11px; color: #64748b; display: flex; align-items: center; gap: 8px; }
+  .page-items li::before { content: '·'; color: #3b82f6; font-size: 16px; line-height: 1; }
+
+  /* Services */
+  .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .service-card { background: #0a0f1a; border: 1px solid #1e2d4a; border-radius: 12px; padding: 20px; }
+  .service-num { font-size: 28px; font-weight: 700; color: #1e2d4a; line-height: 1; margin-bottom: 8px; }
+  .service-name { font-size: 14px; font-weight: 700; color: #e8ecff; margin-bottom: 4px; }
+  .service-sub { font-size: 11px; color: #4f6aad; margin-bottom: 12px; }
+  .service-items { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .service-items li { font-size: 11px; color: #64748b; display: flex; align-items: center; gap: 8px; }
+  .service-items li::before { content: '→'; color: #3b82f6; }
+
+  /* Features table */
+  .features-table { width: 100%; border-collapse: collapse; }
+  .features-table th { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #4f6aad; text-align: left; padding: 10px 16px; border-bottom: 1px solid #1e2d4a; }
+  .features-table td { font-size: 12px; color: #94a3b8; padding: 12px 16px; border-bottom: 1px solid #0f1825; vertical-align: top; }
+  .features-table tr:hover td { background: #0a0f1a; }
+  .feature-name { color: #e2e8f0; font-weight: 600; }
+  .feature-desc { color: #4f6aad; font-size: 11px; margin-top: 2px; }
+
+  /* Content needed */
+  .content-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .content-card { background: #0a0f1a; border: 1px solid #1e2d4a; border-radius: 10px; padding: 16px; }
+  .content-type { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #4f6aad; margin-bottom: 8px; }
+  .content-item { font-size: 11px; color: #64748b; padding: 4px 0; border-bottom: 1px solid #0f1825; display: flex; justify-content: space-between; align-items: center; }
+  .content-item:last-child { border-bottom: none; }
+
+  /* Timeline */
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 20px; }
+  .timeline-line { display: flex; flex-direction: column; align-items: center; }
+  .timeline-dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid #3b82f6; background: #060b14; flex-shrink: 0; margin-top: 4px; }
+  .timeline-dot.done { background: #3b82f6; }
+  .timeline-connector { width: 2px; background: #1e2d4a; flex: 1; margin: 4px 0; min-height: 32px; }
+  .timeline-content { padding-bottom: 28px; }
+  .timeline-phase { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #3b82f6; margin-bottom: 4px; }
+  .timeline-title { font-size: 14px; font-weight: 700; color: #e8ecff; margin-bottom: 4px; }
+  .timeline-items { font-size: 11px; color: #4f6aad; line-height: 1.8; }
+
+  /* Notes */
+  .note { background: #0a1220; border: 1px solid #1e3a5f; border-left: 3px solid #3b82f6; border-radius: 0 8px 8px 0; padding: 14px 18px; margin-bottom: 12px; }
+  .note-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #3b82f6; margin-bottom: 6px; }
+  .note-text { font-size: 12px; color: #94a3b8; line-height: 1.6; }
+
+  .divider { border: none; border-top: 1px solid #1e2d4a; margin: 40px 0; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .footer { background: #040710; border-top: 1px solid #1e2d4a; padding: 20px 48px; text-align: center; font-size: 11px; color: #2d3f5a; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div>
+      <div class="brand">Makai US Group LLC</div>
+      <div class="title">Website Project Plan</div>
+      <div class="subtitle">makaiusgroup.com · Complete Redesign · Claude + Camilo</div>
+    </div>
+    <div class="version">Version 1.0 · June 2026</div>
+  </div>
+  <div class="progress-bar-wrap">
+    <div class="progress-label"><span>Overall Progress</span><span>8% — Planning Phase</span></div>
+    <div class="progress-track"><div class="progress-fill"></div></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ── OVERVIEW ── -->
+  <div class="section">
+    <div class="section-title">Project Overview</div>
+    <div class="two-col">
+      <div>
+        <div class="note">
+          <div class="note-label">Goal</div>
+          <div class="note-text">Build a premium, unique, high-level professional website for Makai US Group LLC. Not a simple landing page — a full multi-page experience that reflects the quality and depth of the company's services. Dark navy + white. English/Spanish bilingual.</div>
+        </div>
+        <div class="note">
+          <div class="note-label">Tech Stack</div>
+          <div class="note-text">Pure HTML/CSS/JS · Hosted on Netlify · Domain: makaiusgroup.com (registered on Squarespace) · No frameworks needed — full control, fast loading.</div>
+        </div>
+      </div>
+      <div>
+        <div class="note">
+          <div class="note-label">Design Direction</div>
+          <div class="note-text">Dark navy backgrounds · White typography · Blue accents (#3b82f6, #818cf8) · No gold · Premium feel similar to top-tier tech/finance companies · Subtle animations · Clean sections with strong whitespace.</div>
+        </div>
+        <div class="note">
+          <div class="note-label">Key Differentiators</div>
+          <div class="note-text">AI-powered chat ("Kai") for lead qualification · Bilingual EN/ES toggle · Deep service pages with real project experience · Integrated MBI pricing and demo CTA.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ── PAGES ── -->
+  <div class="section">
+    <div class="section-title">Pages — Structure & Status</div>
+    <div class="pages-grid">
+
+      <div class="page-card">
+        <div class="page-card-header">
+          <div><div class="page-num">01 / HOME</div><div class="page-name">Landing & Hero</div></div>
+          <span class="badge badge-pending">Pending</span>
+        </div>
+        <div class="page-desc">First impression. Bold hero with tagline and mission. Quick overview of all 4 services. CTA to book demo or explore services.</div>
+        <ul class="page-items">
+          <li>Full-screen hero with background image/video</li>
+          <li>Animated tagline</li>
+          <li>4 service cards (preview)</li>
+          <li>Stats bar (20 yrs experience, 15+ projects, etc.)</li>
+          <li>Featured testimonial</li>
+          <li>CTA — Book a Demo / Get Started</li>
+        </ul>
+      </div>
+
+      <div class="page-card">
+        <div class="page-card-header">
+          <div><div class="page-num">02 / ABOUT</div><div class="page-name">Company & Bio</div></div>
+          <span class="badge badge-pending">Pending</span>
+        </div>
+        <div class="page-desc">Who is Makai US Group LLC. Camilo's bio, photo, 20 years of experience. Company mission and vision.</div>
+        <ul class="page-items">
+          <li>Company story and mission statement</li>
+          <li>Founder bio + professional photo</li>
+          <li>20 years experience highlight</li>
+          <li>Houston market expertise</li>
+          <li>Core values</li>
+          <li>⚠ Need: Mission text, bio, photo</li>
+        </ul>
+      </div>
+
+      <div class="page-card">
+        <div class="page-card-header">
+          <div><div class="page-num">03 / SERVICES</div><div class="page-name">4 Service Areas</div></div>
+          <span class="badge badge-pending">Pending</span>
+        </div>
+        <div class="page-desc">Deep dive into all 4 service offerings. Each with its own sub-section, features, and CTA.</div>
+        <ul class="page-items">
+          <li>01 Terminal — Executive Trading Suite</li>
+          <li>02 Intelligence — MBI + Calculator + Blueprint AI</li>
+          <li>03 Infrastructure — Development & Project Mgmt</li>
+          <li>04 Software & Apps Development</li>
+          <li>Each with pricing or contact CTA</li>
+        </ul>
+      </div>
+
+      <div class="page-card">
+        <div class="page-card-header">
+          <div><div class="page-num">04 / HOW IT WORKS</div><div class="page-name">MBI Workflow</div></div>
+          <span class="badge badge-idea">Suggestion</span>
+        </div>
+        <div class="page-desc">Visual step-by-step of how MBI Intelligence System works — from measurement to AI analysis to budget report. Converts visitors into subscribers.</div>
+        <ul class="page-items">
+          <li>Step 1: Take measurements (Calculator)</li>
+          <li>Step 2: Upload blueprints (Blueprint AI)</li>
+          <li>Step 3: Run AI analysis (MBI phases)</li>
+          <li>Step 4: Get budget report (PDF export)</li>
+          <li>CTA → Start Free / Subscribe</li>
+        </ul>
+      </div>
+
+      <div class="page-card">
+        <div class="page-card-header">
+          <div><div class="page-num">05 / CASE STUDIES</div><div class="page-name">Real Projects</div></div>
+          <span class="badge badge-pending">Pending</span>
+        </div>
+        <div class="page-desc">15+ Houston projects + 6 consulting projects. Anonymized if needed. Shows real-world expertise and results.</div>
+        <ul class="page-items">
+          <li>Project type, scope, outcome</li>
+          <li>Before/after or key metrics</li>
+          <li>⚠ Need: Project details from Camilo</li>
+          <li>Can be anonymized ("Client A, Multi-family")</li>
+        </ul>
+      </div>
+
+      <div class="page-card">
+        <div class="page-card-header">
+          <div><div class="page-num">06 / PRICING</div><div class="page-name">MBI Subscription Tiers</div></div>
+          <span class="badge badge-pending">Pending</span>
+        </div>
+        <div class="page-desc">The 3 MBI tiers displayed publicly so prospects can self-select before signing up.</div>
+        <ul class="page-items">
+          <li>Basic $69 / Pro $149 / Enterprise $259</li>
+          <li>Feature comparison table</li>
+          <li>CTA → Get Started (links to mbi.makaiusgroup.com)</li>
+          <li>FAQ section below pricing</li>
+        </ul>
+      </div>
+
+      <div class="page-card">
+        <div class="page-card-header">
+          <div><div class="page-num">07 / TESTIMONIALS</div><div class="page-name">Client Reviews</div></div>
+          <span class="badge badge-pending">Pending</span>
+        </div>
+        <div class="page-desc">Real client testimonials. Can be collected from past project clients and MBI subscribers.</div>
+        <ul class="page-items">
+          <li>Quote cards with name, company, photo</li>
+          <li>Star ratings</li>
+          <li>⚠ Need: Real testimonials from Camilo</li>
+          <li>Video testimonials (future)</li>
+        </ul>
+      </div>
+
+      <div class="page-card">
+        <div class="page-card-header">
+          <div><div class="page-num">08 / CONTACT</div><div class="page-name">Get in Touch</div></div>
+          <span class="badge badge-pending">Pending</span>
+        </div>
+        <div class="page-desc">Contact form, phone, email, address. Different inquiry types routed to the right service.</div>
+        <ul class="page-items">
+          <li>Contact form (MBI demo, Construction, General)</li>
+          <li>Phone: 832.219.5408</li>
+          <li>Email: info_terminal@makaiusgroup.com</li>
+          <li>Address: 1095 Brittmoore Rd, Houston TX 77043</li>
+          <li>Google Maps embed</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ── SERVICES DETAIL ── -->
+  <div class="section">
+    <div class="section-title">Services — Detailed Breakdown</div>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-name">Terminal — Executive Trading Suite</div>
+        <div class="service-sub">Institutional-grade Nasdaq futures trading environment</div>
+        <ul class="service-items">
+          <li>Precision execution environment</li>
+          <li>Multi-account replication</li>
+          <li>Proprietary risk management</li>
+          <li>Live + Playback modes</li>
+          <li>Link → Trading Journal app</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-name">Intelligence — MBI System</div>
+        <div class="service-sub">AI-powered budget intelligence for construction</div>
+        <ul class="service-items">
+          <li>MBI Intelligence System (6-phase AI analysis)</li>
+          <li>Measurement Calculator (field tool)</li>
+          <li>Blueprint AI (blueprint reading)</li>
+          <li>QC Check & PDF Reports</li>
+          <li>Link → mbi.makaiusgroup.com</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-name">Infrastructure — Project Management</div>
+        <div class="service-sub">Strategic oversight of multi-family & commercial projects</div>
+        <ul class="service-items">
+          <li>Multi-family renovation management</li>
+          <li>Critical infrastructure projects</li>
+          <li>Local Houston market expertise</li>
+          <li>20+ years experience</li>
+          <li>15 completed projects (last 5 yrs)</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <div class="service-name">Software & Apps Development</div>
+        <div class="service-sub">Custom software solutions for business intelligence</div>
+        <ul class="service-items">
+          <li>SaaS product development</li>
+          <li>AI integration & automation</li>
+          <li>Web apps & dashboards</li>
+          <li>David Training App (example)</li>
+          <li>Custom client solutions</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ── KAI AI CHAT ── -->
+  <div class="section">
+    <div class="section-title">Kai — AI Chat System</div>
+    <div class="two-col">
+      <div>
+        <div class="note">
+          <div class="note-label">What is Kai?</div>
+          <div class="note-text">A Claude-powered AI assistant embedded as a chat widget on makaiusgroup.com. Not a generic bot — a smart, professional assistant that knows Makai's services deeply and converses naturally with potential clients before handing off to Camilo.</div>
+        </div>
+        <div class="note">
+          <div class="note-label">Kai's Personality</div>
+          <div class="note-text">Professional but warm. Speaks in complete sentences. Never says "I am an AI" unless directly asked. Asks clarifying questions. Available in English and Spanish. Name: Kai (short for Makai).</div>
+        </div>
+      </div>
+      <div>
+        <div class="note">
+          <div class="note-label">What Kai Can Do</div>
+          <div class="note-text">
+            · Answer questions about all 4 services<br>
+            · Qualify leads (what type of project, budget, timeline)<br>
+            · Explain MBI pricing and features<br>
+            · Book a demo (collect name + email)<br>
+            · Route to correct service area<br>
+            · Respond in English or Spanish automatically<br>
+            · Hand off to Camilo when ready
+          </div>
+        </div>
+        <div class="note">
+          <div class="note-label">Status</div>
+          <div class="note-text">Planned — to be built after website pages are complete. Will use Claude API as the backend with a custom system prompt defining Kai's personality and knowledge base.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ── CONTENT NEEDED ── -->
+  <div class="section">
+    <div class="section-title">Content Needed from Camilo</div>
+    <div class="content-grid">
+
+      <div class="content-card">
+        <div class="content-type">About / Bio</div>
+        <div class="content-item"><span>Professional photo (headshot)</span><span class="badge badge-pending">Needed</span></div>
+        <div class="content-item"><span>Bio text (career summary)</span><span class="badge badge-pending">Needed</span></div>
+        <div class="content-item"><span>Mission statement</span><span class="badge badge-progress">In progress</span></div>
+        <div class="content-item"><span>Company founding story</span><span class="badge badge-pending">Needed</span></div>
+      </div>
+
+      <div class="content-card">
+        <div class="content-type">Images & Media</div>
+        <div class="content-item"><span>Makai logo (PNG transparent)</span><span class="badge badge-done">Have it</span></div>
+        <div class="content-item"><span>Hero background image</span><span class="badge badge-pending">Needed</span></div>
+        <div class="content-item"><span>Project photos</span><span class="badge badge-pending">Needed</span></div>
+        <div class="content-item"><span>Service section images</span><span class="badge badge-pending">Needed</span></div>
+      </div>
+
+      <div class="content-card">
+        <div class="content-type">Case Studies</div>
+        <div class="content-item"><span>Project types & scopes</span><span class="badge badge-pending">Needed</span></div>
+        <div class="content-item"><span>Key results / outcomes</span><span class="badge badge-pending">Needed</span></div>
+        <div class="content-item"><span>Client names (or anonymous)</span><span class="badge badge-pending">Needed</span></div>
+        <div class="content-item"><span>Before/after photos</span><span class="badge badge-pending">Needed</span></div>
+      </div>
+
+      <div class="content-card">
+        <div class="content-type">Testimonials</div>
+        <div class="content-item"><span>Client quotes</span><span class="badge badge-pending">Needed</span></div>
+        <div class="content-item"><span>Client names & companies</span><span class="badge badge-pending">Needed</span></div>
+        <div class="content-item"><span>Client photos (optional)</span><span class="badge badge-pending">Needed</span></div>
+      </div>
+
+      <div class="content-card">
+        <div class="content-type">Contact Info</div>
+        <div class="content-item"><span>Phone: 832.219.5408</span><span class="badge badge-done">Confirmed</span></div>
+        <div class="content-item"><span>Email confirmed</span><span class="badge badge-done">Confirmed</span></div>
+        <div class="content-item"><span>Address confirmed</span><span class="badge badge-done">Confirmed</span></div>
+        <div class="content-item"><span>Business hours</span><span class="badge badge-pending">Needed</span></div>
+      </div>
+
+      <div class="content-card">
+        <div class="content-type">Bilingual (ES)</div>
+        <div class="content-item"><span>Spanish translations</span><span class="badge badge-idea">Claude helps</span></div>
+        <div class="content-item"><span>Review Spanish copy</span><span class="badge badge-pending">Camilo reviews</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ── TIMELINE ── -->
+  <div class="section">
+    <div class="section-title">Build Timeline</div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-line"><div class="timeline-dot done"></div><div class="timeline-connector"></div></div>
+        <div class="timeline-content">
+          <div class="timeline-phase">Phase 1 — Now</div>
+          <div class="timeline-title">Planning & Content Collection</div>
+          <div class="timeline-items">Create project plan · Collect mission + bio + photos · Define services copy · Gather case study details</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-line"><div class="timeline-dot"></div><div class="timeline-connector"></div></div>
+        <div class="timeline-content">
+          <div class="timeline-phase">Phase 2</div>
+          <div class="timeline-title">Design & Build — Core Pages</div>
+          <div class="timeline-items">Home · About · Services · Contact · Bilingual toggle · Deploy to Netlify</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-line"><div class="timeline-dot"></div><div class="timeline-connector"></div></div>
+        <div class="timeline-content">
+          <div class="timeline-phase">Phase 3</div>
+          <div class="timeline-title">Deep Content Pages</div>
+          <div class="timeline-items">How It Works · Case Studies · Testimonials · Pricing page · MBI demo CTA</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-line"><div class="timeline-dot"></div><div class="timeline-connector"></div></div>
+        <div class="timeline-content">
+          <div class="timeline-phase">Phase 4</div>
+          <div class="timeline-title">Kai AI Chat Integration</div>
+          <div class="timeline-items">Build Kai widget · Claude API backend · System prompt with full Makai knowledge · EN/ES auto-detect · Lead capture</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-line"><div class="timeline-dot"></div></div>
+        <div class="timeline-content">
+          <div class="timeline-phase">Phase 5</div>
+          <div class="timeline-title">Polish & Launch</div>
+          <div class="timeline-items">SEO optimization · Performance tuning · Point makaiusgroup.com DNS to Netlify · Go live</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ── MISSION WORKSHOP ── -->
+  <div class="section">
+    <div class="section-title">Mission Statement — Workshop</div>
+    <div class="note">
+      <div class="note-label">Status — In Progress</div>
+      <div class="note-text">Working with Camilo to craft the mission statement. Key themes to incorporate: AI + construction intelligence, financial systems, 20 years of expertise, Houston market, building tools that give professionals an unfair advantage.</div>
+    </div>
+    <div class="note">
+      <div class="note-label">Draft Direction</div>
+      <div class="note-text">Makai US Group LLC builds precision intelligence systems for construction professionals and financial operators — combining decades of field expertise with advanced AI to give clients an unfair competitive advantage in estimating, budgeting, and execution.</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Makai US Group LLC · Website Project Plan · Version 1.0 · June 2026 · Confidential
+</div>
+
+</body>
+</html>
