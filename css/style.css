@@ -191,7 +191,7 @@ p  { color: var(--white-3); line-height: 1.75; }
 .service-card {
   background: var(--navy-2); border: 1px solid var(--border);
   border-radius: var(--r-xl); padding: 40px; position: relative;
-  overflow: hidden; transition: all var(--t); cursor: default;
+  overflow: visible; transition: all var(--t); cursor: default;
 }
 .service-card::before {
   content: ''; position: absolute; inset: 0;
