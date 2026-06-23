@@ -220,8 +220,28 @@ p  { color: var(--white-3); line-height: 1.75; }
 .service-card-features { display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; }
 .service-card-features li { font-size: 12px; color: var(--white-3); display: flex; align-items: center; gap: 8px; }
 .service-card-features li::before { content: '→'; color: var(--blue); font-size: 12px; }
-.service-card-link { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--blue); display: flex; align-items: center; gap: 6px; transition: gap var(--t); }
-.service-card:hover .service-card-link { gap: 10px; }
+.service-card-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 8px;
+  padding: 11px 22px;
+  background: transparent;
+  border: 1px solid var(--blue);
+  color: var(--blue-2);
+  border-radius: var(--r-md);
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  transition: all var(--t);
+}
+.service-card-link:hover {
+  background: var(--blue);
+  color: var(--white);
+  box-shadow: 0 4px 20px rgba(59,130,246,0.4);
+  transform: translateY(-2px);
+  gap: 12px;
+}
+.service-card:first-child .service-card-link,
+.service-card:nth-child(2) .service-card-link {
+  background: rgba(59,130,246,0.08);
+}
 
 /* ══════════════════════════════════════════
    HOW IT WORKS
