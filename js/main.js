@@ -87,20 +87,26 @@ contactForm?.addEventListener('submit', async e => {
   const data = Object.fromEntries(new FormData(contactForm));
 
   try {
-    // For now — Netlify forms submission (add name="contact-form" netlify attribute)
-    const res = await fetch('/', {
+    const res = await fetch('https://app.mbi.makaiusgroup.com/contact', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({ 'form-name': 'contact', ...data }).toString(),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name:    data.name    || data['full-name'] || '',
+        email:   data.email   || '',
+        company: data.company || '',
+        service: data.service || data['interested-in'] || '',
+        message: data.message || '',
+      }),
     });
-    if (res.ok) {
+    const json = await res.json().catch(() => ({}));
+    if (res.ok && json.ok) {
       contactForm.innerHTML = `<div class="form-success">
         <div style="font-size:40px;margin-bottom:16px">✓</div>
         <h3 style="color:var(--white);margin-bottom:8px">Message Received</h3>
         <p>We'll be in touch within 24 hours.</p>
       </div>`;
-    } else throw new Error('Form error');
-  } catch {
+    } else throw new Error(json.error || 'Form error');
+  } catch (err) {
     btn.textContent = originalText;
     btn.disabled = false;
     alert('Something went wrong. Please email us at info_terminal@makaiusgroup.com');
