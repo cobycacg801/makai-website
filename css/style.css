@@ -263,7 +263,9 @@ p  { color: var(--white-3); line-height: 1.75; }
 /* ── 01 TERMINAL — Cyan / Electric Blue ── */
 .card-terminal {
   border-color: rgba(0,212,255,0.18);
-  background: linear-gradient(160deg, #0a0f1e 0%, #070d1c 100%);
+  background:
+    linear-gradient(160deg, rgba(10,15,30,0.91) 0%, rgba(7,13,28,0.88) 100%),
+    url('../images/01_Terminal_Image.png') center/cover no-repeat;
 }
 .card-terminal::before {
   background: linear-gradient(135deg, rgba(0,212,255,0.08) 0%, transparent 55%);
@@ -314,7 +316,9 @@ p  { color: var(--white-3); line-height: 1.75; }
 /* ── 02 INTELLIGENCE — Purple / Violet ── */
 .card-intelligence {
   border-color: rgba(168,85,247,0.18);
-  background: linear-gradient(160deg, #0d0a1e 0%, #090714 100%);
+  background:
+    linear-gradient(160deg, rgba(13,10,30,0.91) 0%, rgba(9,7,20,0.88) 100%),
+    url('../images/02_MBI_Intelligence_Image.png') center/cover no-repeat;
 }
 .card-intelligence::before {
   background: radial-gradient(ellipse at 20% 20%, rgba(168,85,247,0.1) 0%, transparent 65%);
@@ -360,7 +364,9 @@ p  { color: var(--white-3); line-height: 1.75; }
 /* ── 03 INFRASTRUCTURE — Amber / Orange ── */
 .card-infrastructure {
   border-color: rgba(251,146,60,0.18);
-  background: linear-gradient(160deg, #150d04 0%, #0f0903 100%);
+  background:
+    linear-gradient(160deg, rgba(21,13,4,0.91) 0%, rgba(15,9,3,0.88) 100%),
+    url('../images/03_Infrastructure_Image.png') center/cover no-repeat;
 }
 .card-infrastructure::before {
   background: linear-gradient(135deg, rgba(251,146,60,0.08) 0%, transparent 55%);
@@ -415,7 +421,9 @@ p  { color: var(--white-3); line-height: 1.75; }
 /* ── 04 SOFTWARE & APPS — Emerald / Green ── */
 .card-software {
   border-color: rgba(16,185,129,0.18);
-  background: linear-gradient(160deg, #030f0a 0%, #020c08 100%);
+  background:
+    linear-gradient(160deg, rgba(3,15,10,0.91) 0%, rgba(2,12,8,0.88) 100%),
+    url('../images/04_Software_Image.png') center/cover no-repeat;
 }
 .card-software::before {
   background: linear-gradient(225deg, rgba(16,185,129,0.09) 0%, transparent 60%);
