@@ -242,6 +242,231 @@ p  { color: var(--white-3); line-height: 1.75; }
 }
 
 /* ══════════════════════════════════════════
+   SERVICE CARD — UNIQUE IDENTITIES
+══════════════════════════════════════════ */
+
+/* Shared ambient layer */
+.service-card { overflow: hidden; }
+.service-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  z-index: 0;
+}
+.service-card > * { position: relative; z-index: 1; }
+.service-card:hover::after { opacity: 1; }
+
+/* ── 01 TERMINAL — Cyan / Electric Blue ── */
+.card-terminal {
+  border-color: rgba(0,212,255,0.18);
+  background: linear-gradient(160deg, #0a0f1e 0%, #070d1c 100%);
+}
+.card-terminal::before {
+  background: linear-gradient(135deg, rgba(0,212,255,0.08) 0%, transparent 55%);
+}
+.card-terminal::after {
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 38px,
+      rgba(0,212,255,0.03) 38px,
+      rgba(0,212,255,0.03) 39px
+    );
+}
+.card-terminal:hover {
+  border-color: rgba(0,212,255,0.55);
+  box-shadow: 0 0 40px rgba(0,212,255,0.12), 0 20px 60px rgba(0,0,0,0.5);
+}
+.card-terminal .service-card-num { color: rgba(0,212,255,0.15); }
+.card-terminal:hover .service-card-num { color: rgba(0,212,255,0.28); }
+.card-terminal .service-card-icon {
+  background: rgba(0,212,255,0.07);
+  border-color: rgba(0,212,255,0.25);
+  box-shadow: 0 0 18px rgba(0,212,255,0.12);
+}
+.card-terminal .service-card-sub { color: #00d4ff; }
+.card-terminal .service-card-features li::before { color: #00d4ff; }
+.card-terminal .service-card-link {
+  background: rgba(0,212,255,0.08) !important;
+  border-color: rgba(0,212,255,0.4) !important;
+  color: #00d4ff !important;
+}
+.card-terminal .service-card-link:hover {
+  background: rgba(0,212,255,0.85) !important;
+  color: #000 !important;
+  box-shadow: 0 6px 28px rgba(0,212,255,0.4);
+}
+
+/* Scan-line animation */
+.card-terminal::before {
+  animation: terminal-scan 6s linear infinite;
+}
+@keyframes terminal-scan {
+  0%   { background-position: 0 -100%; }
+  100% { background-position: 0 200%; }
+}
+
+/* ── 02 INTELLIGENCE — Purple / Violet ── */
+.card-intelligence {
+  border-color: rgba(168,85,247,0.18);
+  background: linear-gradient(160deg, #0d0a1e 0%, #090714 100%);
+}
+.card-intelligence::before {
+  background: radial-gradient(ellipse at 20% 20%, rgba(168,85,247,0.1) 0%, transparent 65%);
+  opacity: 1;
+  animation: intel-pulse 5s ease-in-out infinite;
+}
+.card-intelligence::after {
+  background: radial-gradient(ellipse at 80% 80%, rgba(168,85,247,0.07) 0%, transparent 55%);
+}
+@keyframes intel-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.08); }
+}
+.card-intelligence:hover {
+  border-color: rgba(168,85,247,0.55);
+  box-shadow: 0 0 40px rgba(168,85,247,0.12), 0 20px 60px rgba(0,0,0,0.5);
+}
+.card-intelligence .service-card-num { color: rgba(168,85,247,0.15); }
+.card-intelligence:hover .service-card-num { color: rgba(168,85,247,0.28); }
+.card-intelligence .service-card-icon {
+  background: rgba(168,85,247,0.07);
+  border-color: rgba(168,85,247,0.25);
+  box-shadow: 0 0 18px rgba(168,85,247,0.15);
+  animation: icon-glow-purple 4s ease-in-out infinite;
+}
+@keyframes icon-glow-purple {
+  0%, 100% { box-shadow: 0 0 12px rgba(168,85,247,0.1); }
+  50%       { box-shadow: 0 0 28px rgba(168,85,247,0.3); }
+}
+.card-intelligence .service-card-sub { color: #c084fc; }
+.card-intelligence .service-card-features li::before { color: #c084fc; }
+.card-intelligence .service-card-link {
+  background: rgba(168,85,247,0.08) !important;
+  border-color: rgba(168,85,247,0.4) !important;
+  color: #c084fc !important;
+}
+.card-intelligence .service-card-link:hover {
+  background: rgba(168,85,247,0.85) !important;
+  color: #fff !important;
+  box-shadow: 0 6px 28px rgba(168,85,247,0.4);
+}
+
+/* ── 03 INFRASTRUCTURE — Amber / Orange ── */
+.card-infrastructure {
+  border-color: rgba(251,146,60,0.18);
+  background: linear-gradient(160deg, #150d04 0%, #0f0903 100%);
+}
+.card-infrastructure::before {
+  background: linear-gradient(135deg, rgba(251,146,60,0.08) 0%, transparent 55%);
+  opacity: 1;
+}
+.card-infrastructure::after {
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 48px,
+      rgba(251,146,60,0.03) 48px,
+      rgba(251,146,60,0.03) 49px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 48px,
+      rgba(251,146,60,0.03) 48px,
+      rgba(251,146,60,0.03) 49px
+    );
+  animation: grid-shift 8s linear infinite;
+}
+@keyframes grid-shift {
+  0%   { background-position: 0 0, 0 0; }
+  100% { background-position: 49px 49px, 49px 49px; }
+}
+.card-infrastructure:hover {
+  border-color: rgba(251,146,60,0.55);
+  box-shadow: 0 0 40px rgba(251,146,60,0.1), 0 20px 60px rgba(0,0,0,0.5);
+}
+.card-infrastructure .service-card-num { color: rgba(251,146,60,0.15); }
+.card-infrastructure:hover .service-card-num { color: rgba(251,146,60,0.28); }
+.card-infrastructure .service-card-icon {
+  background: rgba(251,146,60,0.07);
+  border-color: rgba(251,146,60,0.25);
+  box-shadow: 0 0 18px rgba(251,146,60,0.1);
+}
+.card-infrastructure .service-card-sub { color: #fb923c; }
+.card-infrastructure .service-card-features li::before { color: #fb923c; }
+.card-infrastructure .service-card-link {
+  background: rgba(251,146,60,0.08) !important;
+  border-color: rgba(251,146,60,0.4) !important;
+  color: #fb923c !important;
+}
+.card-infrastructure .service-card-link:hover {
+  background: rgba(251,146,60,0.85) !important;
+  color: #000 !important;
+  box-shadow: 0 6px 28px rgba(251,146,60,0.4);
+}
+
+/* ── 04 SOFTWARE & APPS — Emerald / Green ── */
+.card-software {
+  border-color: rgba(16,185,129,0.18);
+  background: linear-gradient(160deg, #030f0a 0%, #020c08 100%);
+}
+.card-software::before {
+  background: linear-gradient(225deg, rgba(16,185,129,0.09) 0%, transparent 60%);
+  opacity: 1;
+}
+.card-software::after {
+  background: radial-gradient(circle at 85% 15%, rgba(16,185,129,0.06) 0%, transparent 45%);
+  animation: code-breathe 7s ease-in-out infinite;
+}
+@keyframes code-breathe {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 1; }
+}
+.card-software:hover {
+  border-color: rgba(16,185,129,0.55);
+  box-shadow: 0 0 40px rgba(16,185,129,0.1), 0 20px 60px rgba(0,0,0,0.5);
+}
+.card-software .service-card-num { color: rgba(16,185,129,0.15); }
+.card-software:hover .service-card-num { color: rgba(16,185,129,0.28); }
+.card-software .service-card-icon {
+  background: rgba(16,185,129,0.07);
+  border-color: rgba(16,185,129,0.25);
+  box-shadow: 0 0 18px rgba(16,185,129,0.1);
+  animation: icon-glow-green 5s ease-in-out infinite;
+}
+@keyframes icon-glow-green {
+  0%, 100% { box-shadow: 0 0 12px rgba(16,185,129,0.08); }
+  50%       { box-shadow: 0 0 26px rgba(16,185,129,0.28); }
+}
+.card-software .service-card-sub { color: #34d399; }
+.card-software .service-card-features li::before { color: #34d399; }
+.card-software .service-card-link {
+  background: rgba(16,185,129,0.08) !important;
+  border-color: rgba(16,185,129,0.4) !important;
+  color: #34d399 !important;
+}
+.card-software .service-card-link:hover {
+  background: rgba(16,185,129,0.85) !important;
+  color: #000 !important;
+  box-shadow: 0 6px 28px rgba(16,185,129,0.4);
+}
+
+/* ── Shared hover lift override per card ── */
+.card-terminal:hover,
+.card-intelligence:hover,
+.card-infrastructure:hover,
+.card-software:hover {
+  transform: translateY(-6px);
+}
+
+/* ══════════════════════════════════════════
    HOW IT WORKS
 ══════════════════════════════════════════ */
 #how-it-works { background: var(--navy-2); }
